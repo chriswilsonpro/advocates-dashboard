@@ -12,6 +12,11 @@ export function useFilteredAdvocates() {
 
   const matchAdvocate = useCallback(
     (advocate: Advocate) => {
+      if (searchTerm.length === 0) {
+        // No need to filter results
+        return true;
+      }
+
       const search = searchTerm
         .split(" ")
         .filter((term) => term.length > 0)
@@ -29,10 +34,8 @@ export function useFilteredAdvocates() {
 
   const filteredAdvocates = useMemo(() => {
     console.log("SEARCH ADVOCATES", advocates);
-    return searchTerm.length > 0
-      ? advocates.filter((advocate) => matchAdvocate(advocate))
-      : advocates;
-  }, [advocates, searchTerm]);
+    return advocates.filter((advocate) => matchAdvocate(advocate));
+  }, [advocates, matchAdvocate]);
 
   return {
     advocates: filteredAdvocates,

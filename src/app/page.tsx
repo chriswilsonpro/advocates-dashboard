@@ -1,29 +1,10 @@
 "use client";
 
+import { useFilteredAdvocates } from "@/hooks/useFilteredAdvocates";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 
 export default function Home() {
-  const [advocates, setAdvocates] = useState([]);
-  const [searchTerm, setSearchTerm] = useState<string>('')
-  const filteredAdvocates = useMemo(() => {
-    console.log('SEARCH ADVOCATES', advocates)
-    return advocates.filter(advocate => 
-        Object.values(advocate)
-          .join('|')
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase())
-      )
-  }, [advocates, searchTerm]);
-
-  useEffect(() => {
-    console.log("fetching advocates...");
-    fetch("/api/advocates").then((response) => {
-      response.json().then((jsonResponse) => {
-        console.log('ADVOCATES', jsonResponse)
-        setAdvocates(jsonResponse.data);
-      });
-    });
-  }, []);
+  const { advocates, setSearchTerm, resetSearch } = useFilteredAdvocates()
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
@@ -31,7 +12,7 @@ export default function Home() {
   };
 
   const onClick = () => {
-    setSearchTerm('')
+    resetSearch();
   };
 
   return (
@@ -62,16 +43,16 @@ export default function Home() {
           </tr>
         </thead>
         <tbody>
-          {filteredAdvocates.map((advocate) => {
+          {advocates.map((advocate) => {
             return (
-              <tr key={advocate.phoneNumber}>
+              <tr key={advocate.id}>
                 <td>{advocate.firstName}</td>
                 <td>{advocate.lastName}</td>
                 <td>{advocate.city}</td>
                 <td>{advocate.degree}</td>
                 <td>
                   {advocate.specialties.map((s) => (
-                    <div>{s}</div>
+                    <div key={s}>{s}</div>
                   ))}
                 </td>
                 <td>{advocate.yearsOfExperience}</td>
