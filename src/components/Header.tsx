@@ -5,7 +5,9 @@ interface IHeaderProps {
 export function Header({ title }: IHeaderProps) {
   const classes = [
     'text-4xl',
-    'font-semibold'
+    'font-semibold',
+    'mb-6'
   ];
-  return <h1 className={classes.join(' ')}>{title}</h1>;
+
+  return <h1 className={classes.join(" ")}>{title}</h1>;
 }

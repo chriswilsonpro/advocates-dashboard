@@ -22,28 +22,29 @@ export function TextInput({
   onChange,
 }: ITextInputProps) {
   const labelClasses = [
-    'block',
-    'mb-2',
-    'text-sm text-gray-900',
-    'font-medium'
-  ]
+    "block",
+    "mb-2 pl-1",
+    "text-sm text-gray-700",
+    "font-bold",
+  ];
 
   const inputClasses = [
-    'block',
-    'bg-gray-50',
-    'border border-gray-300',
-    'rounded-lg',
-    'text-gray-900 text-sm',
-    'focus:ring-blue-500 focus:border-blue-500',
-    'w-full',
-    'p-2.5'
-  ]
+    "block",
+    "border border-gray-300",
+    "rounded-lg",
+    "text-gray-900 text-sm",
+    "focus:ring-blue-500 focus:border-blue-500",
+    "w-full",
+    "p-2.5",
+  ];
 
   return (
     <div className="flex-grow">
-      { label && <label htmlFor={id} className={labelClasses.join(' ')}>{label}</label>}
+      <label htmlFor={id} className={labelClasses.join(" ")}>
+        {label}
+      </label>
       <input
-        className={inputClasses.join(' ')}
+        className={inputClasses.join(" ")}
         type={type}
         id={id}
         name={name}
