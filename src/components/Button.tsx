@@ -8,7 +8,8 @@ interface IButtonProps {
 
 export function Button({ name, onClick, children }: IButtonProps) {
   const classes = [
-    "self-end",
+    "lg:text-sm text-xs",
+    "lg:self-end",
     "text-white font-medium text-sm",
     "bg-blue-700 hover:bg-blue-800",
     "px-5 py-3",

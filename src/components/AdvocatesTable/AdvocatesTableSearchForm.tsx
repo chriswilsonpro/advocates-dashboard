@@ -23,13 +23,14 @@ export function AdvocatesTableSearchForm({
   };
 
   return (
-    <div className="flex flex-direction-row gap-2">
+    <div className="flex flex-col lg:flex-row gap-2">
       <TextInput
         label={`Searching for: ${searchTerm}`}
         id="advocates-search-text"
         type="text"
         name="search"
         placeholder="Search by name, phone, city, specialties..."
+        value={searchTerm}
         onChange={onChange}
       />
       <Button onClick={onClick}>Reset Search</Button>

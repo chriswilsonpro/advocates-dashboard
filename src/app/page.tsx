@@ -5,7 +5,7 @@ import { Header } from "@/components/Header";
 
 export default function Home() {
   return (
-    <main className="w-fill m-6">
+    <main className="w-fill flex flex-col m-6">
       <Header title="Solace Advocates" />
       <AdvocatesTable />
     </main>
