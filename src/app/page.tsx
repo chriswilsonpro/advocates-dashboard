@@ -1,10 +1,13 @@
 "use client";
 
+import { Button } from "@/components/Button";
+import { Header } from "@/components/Header";
+import { TextInput } from "@/components/TextInput";
 import { useFilteredAdvocates } from "@/hooks/useFilteredAdvocates";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 
 export default function Home() {
-  const { advocates, setSearchTerm, resetSearch } = useFilteredAdvocates()
+  const { advocates, searchTerm, setSearchTerm, resetSearch } = useFilteredAdvocates()
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
@@ -16,17 +19,14 @@ export default function Home() {
   };
 
   return (
-    <main style={{ margin: "24px" }}>
-      <h1>Solace Advocates</h1>
-      <br />
-      <br />
+    <main className="m-6">
+      <Header title="Solace Advocates" />
       <div>
-        <p>Search</p>
-        <p>
-          Searching for: <span id="search-term"></span>
-        </p>
-        <input style={{ border: "1px solid black" }} onChange={onChange} />
-        <button onClick={onClick}>Reset Search</button>
+        <p>Search Advocates</p>
+        <div className="flex flex-direction-row">
+        <TextInput label={`Searching for: ${searchTerm}`} id="advocates-search-text" type="text" name="search" placeholder="Search by name, phone, city..." onChange={onChange}/>
+        <Button onClick={onClick}>Reset Search</Button>
+        </div>
       </div>
       <br />
       <br />

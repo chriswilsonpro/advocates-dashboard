@@ -39,6 +39,7 @@ export function useFilteredAdvocates() {
 
   return {
     advocates: filteredAdvocates,
+    searchTerm,
     setSearchTerm,
     resetSearch,
   };
